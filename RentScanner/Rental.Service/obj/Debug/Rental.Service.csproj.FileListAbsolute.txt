@@ -1,0 +1,15 @@
+C:\Users\wilson\documents\visual studio 2013\Projects\RentScanner\Rental.Service\obj\Debug\Rental.Service.csprojResolveAssemblyReference.cache
+C:\Users\wilson\documents\visual studio 2013\Projects\RentScanner\Rental.Service\bin\Debug\Rental.Service.dll
+C:\Users\wilson\documents\visual studio 2013\Projects\RentScanner\Rental.Service\bin\Debug\Rental.Service.pdb
+C:\Users\wilson\documents\visual studio 2013\Projects\RentScanner\Rental.Service\bin\Debug\DocumentFormat.OpenXml.dll
+C:\Users\wilson\documents\visual studio 2013\Projects\RentScanner\Rental.Service\bin\Debug\Rental.Model.dll
+C:\Users\wilson\documents\visual studio 2013\Projects\RentScanner\Rental.Service\bin\Debug\Rental.Model.pdb
+C:\Users\wilson\documents\visual studio 2013\Projects\RentScanner\Rental.Service\obj\Debug\Rental.Service.dll
+C:\Users\wilson\documents\visual studio 2013\Projects\RentScanner\Rental.Service\obj\Debug\Rental.Service.pdb
+C:\Users\wilson\documents\visual studio 2013\Projects\RentScanner\Rental.Service\bin\Debug\Rental.DataAccess.dll
+C:\Users\wilson\documents\visual studio 2013\Projects\RentScanner\Rental.Service\bin\Debug\EntityFramework.dll
+C:\Users\wilson\documents\visual studio 2013\Projects\RentScanner\Rental.Service\bin\Debug\Rental.DataAccess.pdb
+C:\Users\wilson\documents\visual studio 2013\Projects\RentScanner\Rental.Service\bin\Debug\EntityFramework.xml
+C:\Users\wilson\documents\visual studio 2013\Projects\RentScanner\Rental.Service\bin\Debug\Rental.Service.dll.config
+C:\Users\wilson\documents\visual studio 2013\Projects\RentScanner\Rental.Service\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\wilson\documents\visual studio 2013\Projects\RentScanner\Rental.Service\bin\Debug\EntityFramework.SqlServer.xml

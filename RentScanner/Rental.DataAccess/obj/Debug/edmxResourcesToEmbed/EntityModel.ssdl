@@ -1,0 +1,139 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="RentalModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Property">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Number" Type="char" MaxLength="10" Nullable="false" />
+    <Property Name="Address" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Suburb" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="PostCode" Type="int" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PropertyExpenditure">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="PropertyId" Type="int" Nullable="false" />
+    <Property Name="Description" Type="varchar" MaxLength="500" Nullable="false" />
+    <Property Name="TransactionDate" Type="datetime" Nullable="false" />
+    <Property Name="Cost" Type="decimal" Precision="8" Scale="2" Nullable="false" />
+    <Property Name="Notes" Type="varchar(max)" />
+  </EntityType>
+  <EntityType Name="PropertyRent">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="PropertyId" Type="int" Nullable="false" />
+    <Property Name="RentalPrice" Type="decimal" Precision="5" Scale="2" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PropertyTenant">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PropertyId" Type="int" Nullable="false" />
+    <Property Name="TenantId" Type="int" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Tenant">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FirstName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Surname" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Property_Property">
+    <End Role="Property" Type="Self.Property" Multiplicity="1" />
+    <End Role="Property1" Type="Self.Property" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Property">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Property1">
+        <PropertyRef Name="Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PropertyExpenditure_Property">
+    <End Role="Property" Type="Self.Property" Multiplicity="1" />
+    <End Role="PropertyExpenditure" Type="Self.PropertyExpenditure" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Property">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PropertyExpenditure">
+        <PropertyRef Name="PropertyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PropertyRent_Property">
+    <End Role="Property" Type="Self.Property" Multiplicity="1" />
+    <End Role="PropertyRent" Type="Self.PropertyRent" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Property">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PropertyRent">
+        <PropertyRef Name="PropertyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PropertyTenant_Property">
+    <End Role="Property" Type="Self.Property" Multiplicity="1" />
+    <End Role="PropertyTenant" Type="Self.PropertyTenant" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Property">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PropertyTenant">
+        <PropertyRef Name="PropertyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PropertyTenant_Tenant">
+    <End Role="Tenant" Type="Self.Tenant" Multiplicity="1" />
+    <End Role="PropertyTenant" Type="Self.PropertyTenant" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tenant">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PropertyTenant">
+        <PropertyRef Name="TenantId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="RentalModelStoreContainer">
+    <EntitySet Name="Property" EntityType="Self.Property" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PropertyExpenditure" EntityType="Self.PropertyExpenditure" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PropertyRent" EntityType="Self.PropertyRent" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PropertyTenant" EntityType="Self.PropertyTenant" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Tenant" EntityType="Self.Tenant" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Property_Property" Association="Self.FK_Property_Property">
+      <End Role="Property" EntitySet="Property" />
+      <End Role="Property1" EntitySet="Property" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PropertyExpenditure_Property" Association="Self.FK_PropertyExpenditure_Property">
+      <End Role="Property" EntitySet="Property" />
+      <End Role="PropertyExpenditure" EntitySet="PropertyExpenditure" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PropertyRent_Property" Association="Self.FK_PropertyRent_Property">
+      <End Role="Property" EntitySet="Property" />
+      <End Role="PropertyRent" EntitySet="PropertyRent" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PropertyTenant_Property" Association="Self.FK_PropertyTenant_Property">
+      <End Role="Property" EntitySet="Property" />
+      <End Role="PropertyTenant" EntitySet="PropertyTenant" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PropertyTenant_Tenant" Association="Self.FK_PropertyTenant_Tenant">
+      <End Role="Tenant" EntitySet="Tenant" />
+      <End Role="PropertyTenant" EntitySet="PropertyTenant" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="RentalModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Property">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Number" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Suburb" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="PostCode" Type="Int32" Nullable="false" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="PropertyTenant" Relationship="Self.FK_PropertyTenant_Property" FromRole="Property" ToRole="PropertyTenant" />
+  </EntityType>
+  <EntityType Name="PropertyTenant">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PropertyId" Type="Int32" Nullable="false" />
+    <Property Name="TenantId" Type="Int32" Nullable="false" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Property" Relationship="Self.FK_PropertyTenant_Property" FromRole="PropertyTenant" ToRole="Property" />
+    <NavigationProperty Name="Tenant" Relationship="Self.FK_PropertyTenant_Tenant" FromRole="PropertyTenant" ToRole="Tenant" />
+  </EntityType>
+  <EntityType Name="Tenant">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Surname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="PropertyTenant" Relationship="Self.FK_PropertyTenant_Tenant" FromRole="Tenant" ToRole="PropertyTenant" />
+  </EntityType>
+  <Association Name="FK_PropertyTenant_Property">
+    <End Role="Property" Type="Self.Property" Multiplicity="1" />
+    <End Role="PropertyTenant" Type="Self.PropertyTenant" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Property">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PropertyTenant">
+        <PropertyRef Name="PropertyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PropertyTenant_Tenant">
+    <End Role="Tenant" Type="Self.Tenant" Multiplicity="1" />
+    <End Role="PropertyTenant" Type="Self.PropertyTenant" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tenant">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PropertyTenant">
+        <PropertyRef Name="TenantId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Property" EntityType="Self.Property" />
+    <EntitySet Name="PropertyTenant" EntityType="Self.PropertyTenant" />
+    <EntitySet Name="Tenant" EntityType="Self.Tenant" />
+    <AssociationSet Name="FK_PropertyTenant_Property" Association="Self.FK_PropertyTenant_Property">
+      <End Role="Property" EntitySet="Property" />
+      <End Role="PropertyTenant" EntitySet="PropertyTenant" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PropertyTenant_Tenant" Association="Self.FK_PropertyTenant_Tenant">
+      <End Role="Tenant" EntitySet="Tenant" />
+      <End Role="PropertyTenant" EntitySet="PropertyTenant" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
