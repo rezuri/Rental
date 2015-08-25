@@ -23,19 +23,22 @@ namespace Rental.Service
 
         public void ProcessTransactions(string fullPathFileName)
         {
-            var test = _transactionRepository.GetTransactionCriterias(true);
+            var criteriaList = new List<TransactionCriteria>();
             using (var context = new RentalContext())
             {
                 var repo = new TransactionRepository(context);
-                var result = repo.GetTransactionCriterias(true);
+                criteriaList = repo.GetTransactionCriterias(true).ToList();
                 context.Dispose();
             }
-            var extracts = ExtractTranscations(fullPathFileName);
+            var extracts = ExtractTranscations(fullPathFileName, criteriaList);
+            var x = 1;
         }
 
-        private IList<TransactionItem> ExtractTranscations(string fullPathFileName)
+        private IList<TransactionItem> ExtractTranscations(string fullPathFileName, IEnumerable<TransactionCriteria> criterias)
         {
             var dataList = new List<ExcelRow>();
+            var mappedItems = new List<TransactionItem>();
+            var qualifiedItems = new List<TransactionItem>();
             using (var spreadsheetDocument = SpreadsheetDocument.Open(fullPathFileName, false))
             {
                 var workbook = spreadsheetDocument.WorkbookPart;
@@ -69,13 +72,19 @@ namespace Rental.Service
                         dataList.Add((ExcelRow)rowContent);
                     }
 
-                    var mappedItems = dataList.Select(x => ExcelRowToTransactionItemMapper.Map(x, workbook)).ToList();
+                    mappedItems = dataList.Select(x => ExcelRowToTransactionItemMapper.Map(x, workbook)).ToList();
 
                     //_rentalTransactions.AddRange(mappedItems.Where(x => x.Description.Contains("RAVINDER KAUR")));
                     //_rentalTransactions.AddRange(mappedItems.Where(x => x.Description.Contains("PAYMENT TO R.A.C.I.")));
                 }
             }
-            return new List<TransactionItem>();
+
+            foreach (var criteria in criterias)
+            {
+                qualifiedItems.AddRange(mappedItems.Where(x => x.Description.Contains(criteria.Keyword)));
+            }
+
+            return qualifiedItems;
         }
     }
 }
