@@ -13,3 +13,18 @@ C:\Users\wilson\documents\visual studio 2013\Projects\RentScanner\Rental.Service
 C:\Users\wilson\documents\visual studio 2013\Projects\RentScanner\Rental.Service\bin\Debug\Rental.Service.dll.config
 C:\Users\wilson\documents\visual studio 2013\Projects\RentScanner\Rental.Service\bin\Debug\EntityFramework.SqlServer.dll
 C:\Users\wilson\documents\visual studio 2013\Projects\RentScanner\Rental.Service\bin\Debug\EntityFramework.SqlServer.xml
+D:\git\Rental\RentScanner\Rental.Service\bin\Debug\Rental.Service.dll.config
+D:\git\Rental\RentScanner\Rental.Service\bin\Debug\Rental.Service.dll
+D:\git\Rental\RentScanner\Rental.Service\bin\Debug\Rental.Service.pdb
+D:\git\Rental\RentScanner\Rental.Service\bin\Debug\DocumentFormat.OpenXml.dll
+D:\git\Rental\RentScanner\Rental.Service\bin\Debug\EntityFramework.dll
+D:\git\Rental\RentScanner\Rental.Service\bin\Debug\EntityFramework.SqlServer.dll
+D:\git\Rental\RentScanner\Rental.Service\bin\Debug\Rental.DataAccess.dll
+D:\git\Rental\RentScanner\Rental.Service\bin\Debug\Rental.Model.dll
+D:\git\Rental\RentScanner\Rental.Service\bin\Debug\Rental.DataAccess.pdb
+D:\git\Rental\RentScanner\Rental.Service\bin\Debug\Rental.Model.pdb
+D:\git\Rental\RentScanner\Rental.Service\bin\Debug\EntityFramework.xml
+D:\git\Rental\RentScanner\Rental.Service\bin\Debug\EntityFramework.SqlServer.xml
+D:\git\Rental\RentScanner\Rental.Service\obj\Debug\Rental.Service.csprojResolveAssemblyReference.cache
+D:\git\Rental\RentScanner\Rental.Service\obj\Debug\Rental.Service.dll
+D:\git\Rental\RentScanner\Rental.Service\obj\Debug\Rental.Service.pdb

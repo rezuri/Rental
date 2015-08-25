@@ -3,3 +3,8 @@ C:\Users\wilson\documents\visual studio 2013\Projects\RentScanner\Rental.Model\b
 C:\Users\wilson\documents\visual studio 2013\Projects\RentScanner\Rental.Model\obj\Debug\Rental.Model.dll
 C:\Users\wilson\documents\visual studio 2013\Projects\RentScanner\Rental.Model\obj\Debug\Rental.Model.pdb
 C:\Users\wilson\documents\visual studio 2013\Projects\RentScanner\Rental.Model\obj\Debug\Rental.Model.csprojResolveAssemblyReference.cache
+D:\git\Rental\RentScanner\Rental.Model\bin\Debug\Rental.Model.dll
+D:\git\Rental\RentScanner\Rental.Model\bin\Debug\Rental.Model.pdb
+D:\git\Rental\RentScanner\Rental.Model\obj\Debug\Rental.Model.csprojResolveAssemblyReference.cache
+D:\git\Rental\RentScanner\Rental.Model\obj\Debug\Rental.Model.dll
+D:\git\Rental\RentScanner\Rental.Model\obj\Debug\Rental.Model.pdb

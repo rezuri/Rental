@@ -21,8 +21,8 @@ namespace RentScanner
         public static void Main(string[] args)
         {
             Initialize();
-            //TestEntity();
-            TestProcess();
+            TestEntity();
+            //TestProcess();
         }
 
         private static void GetRental()
