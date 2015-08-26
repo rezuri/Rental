@@ -81,7 +81,13 @@ namespace Rental.Service
 
             foreach (var criteria in criterias)
             {
-                qualifiedItems.AddRange(mappedItems.Where(x => x.Description.Contains(criteria.Keyword)));
+                var items = mappedItems.Where(x => x.Description.Contains(criteria.Keyword)).ToList();
+                foreach (var i in items)
+                {
+                    i.IsExpenditure = criteria.IsExpenditure;
+                    i.IsRental = criteria.IsRental;
+                }
+                qualifiedItems.AddRange(items);
             }
 
             return qualifiedItems;

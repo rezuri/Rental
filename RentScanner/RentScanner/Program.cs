@@ -21,8 +21,8 @@ namespace RentScanner
         public static void Main(string[] args)
         {
             Initialize();
-            TestEntity();
-            //TestProcess();
+            //TestEntity();
+            TestProcess();
         }
 
         private static void GetRental()
@@ -39,7 +39,7 @@ namespace RentScanner
         private static void TestProcess()
         {
             var transactionService = _container.GetInstance<ITransactionService>();
-            transactionService.ProcessTransactions("test");
+            transactionService.ProcessTransactions(@"C:\Temp\ANZ_3Month.xlsx");
         }
 
         private static void Initialize()
