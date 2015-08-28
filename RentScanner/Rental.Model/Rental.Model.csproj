@@ -41,8 +41,8 @@
   <ItemGroup>
     <Compile Include="Extraction\ExcelRow.cs" />
     <Compile Include="Extraction\ExcelCell.cs" />
-    <Compile Include="Extraction\TransactionCriteria.cs" />
-    <Compile Include="Extraction\TransactionItem.cs" />
+    <Compile Include="TransactionCriteria.cs" />
+    <Compile Include="TransactionItem.cs" />
     <Compile Include="Property.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PropertyTenant.cs" />

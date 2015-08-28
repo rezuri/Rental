@@ -1,4 +1,4 @@
-﻿namespace Rental.Model.Extraction
+﻿namespace Rental.Model
 {
     public class TransactionCriteria
     {

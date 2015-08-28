@@ -1,6 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
-using Rental.Model.Extraction;
+using Rental.Model;
 
 namespace Rental.DataAccess
 {
@@ -23,6 +24,17 @@ namespace Rental.DataAccess
                 query = query.Where(x => x.IsActive);
 
             return query.ToList();
+        }
+
+        public IList<TransactionItem> GetTransactionItems(DateTime earliestDate)
+        {
+            return _context.TransactionItems.Where(t => t.TransactionDate >= earliestDate.Date).ToList();
+        }
+
+        public void SaveTransactionItems(IList<TransactionItem> transactionItems)
+        {
+            _context.TransactionItems.AddRange(transactionItems);
+            _context.SaveChanges();
         }
     }
 }

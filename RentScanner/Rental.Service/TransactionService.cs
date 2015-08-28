@@ -7,6 +7,7 @@ using System.Xml.Serialization;
 using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Spreadsheet;
 using Rental.DataAccess;
+using Rental.Model;
 using Rental.Model.Extraction;
 using Rental.Service.Mappers;
 
@@ -30,11 +31,13 @@ namespace Rental.Service
                 criteriaList = repo.GetTransactionCriterias(true).ToList();
                 context.Dispose();
             }
-            var extracts = ExtractTranscations(fullPathFileName, criteriaList);
+            var extracts = ExtractTransactions(fullPathFileName, criteriaList);
+            var filteredExtracts = FilterTransactionItemsToPersist(extracts);
+            SaveTransactionItems(filteredExtracts);
             var x = 1;
         }
 
-        private IList<TransactionItem> ExtractTranscations(string fullPathFileName, IEnumerable<TransactionCriteria> criterias)
+        private IList<TransactionItem> ExtractTransactions(string fullPathFileName, IEnumerable<TransactionCriteria> criterias)
         {
             var dataList = new List<ExcelRow>();
             var mappedItems = new List<TransactionItem>();
@@ -91,6 +94,40 @@ namespace Rental.Service
             }
 
             return qualifiedItems;
+        }
+
+        private IList<TransactionItem> FilterTransactionItemsToPersist(IList<TransactionItem> extractItems)
+        {
+            var newTransactionItems = new List<TransactionItem>();
+            var searchDate = extractItems.OrderBy(x => x.TransactionDate).First().TransactionDate;
+            var existingTransactions = new List<TransactionItem>();
+
+            using (var context = new RentalContext())
+            {
+                var repo = new TransactionRepository(context);
+                existingTransactions = repo.GetTransactionItems(searchDate).ToList();
+            }
+
+            foreach (var item in extractItems)
+            {
+                if (!existingTransactions.Any(x => x.TransactionDate.Equals(item.TransactionDate) && 
+                    x.Amount.Equals(item.Amount) && 
+                    x.Description.Equals(item.Description)))
+                {
+                    newTransactionItems.Add(item);
+                }
+            }
+
+            return newTransactionItems;
+        }
+
+        private void SaveTransactionItems(IList<TransactionItem> newItems)
+        {
+            using (var context = new RentalContext())
+            {
+                var repo = new TransactionRepository(context);
+                repo.SaveTransactionItems(newItems);
+            }
         }
     }
 }

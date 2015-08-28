@@ -5,6 +5,7 @@ using System.Xml;
 using System.Xml.Serialization;
 using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Spreadsheet;
+using Rental.Model;
 using Rental.Model.Extraction;
 using Rental.Service.Mappers;
 

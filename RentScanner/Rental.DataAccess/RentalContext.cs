@@ -1,7 +1,6 @@
 ﻿using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
 using Rental.Model;
-using Rental.Model.Extraction;
 
 namespace Rental.DataAccess
 {
@@ -22,5 +21,6 @@ namespace Rental.DataAccess
         public DbSet<Property> Properties { get; set; }
         public DbSet<PropertyTenant> PropertyTenants { get; set; }
         public DbSet<TransactionCriteria> TransactionCriterias { get; set; }
+        public DbSet<TransactionItem> TransactionItems { get; set; }
     }
 }

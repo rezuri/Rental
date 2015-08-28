@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using DocumentFormat.OpenXml.Packaging;
+using Rental.Model;
 using Rental.Model.Extraction;
 
 namespace Rental.Service.Mappers
@@ -20,7 +21,8 @@ namespace Rental.Service.Mappers
                         response.TransactionDate = DateTime.FromOADate(double.Parse(cell.Value));
                         break;
                     case "B":
-                        response.Amount = Math.Abs(double.Parse(cell.Value));
+                        var value = Math.Abs(decimal.Parse(cell.Value));
+                        response.Amount = Math.Round(value, 2);
                         break;
                     case "C":
                         response.Description = ExcelHelper.GetSharedStringItemById(workbookPart, int.Parse(cell.Value));
